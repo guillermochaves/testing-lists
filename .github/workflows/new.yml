@@ -21,6 +21,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    needs: build
     
     steps:
       - name: Clone External Repository
@@ -34,7 +35,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx playwright test
+        run: test-chromium
       - uses: actions/upload-artifact@v4
 
         
