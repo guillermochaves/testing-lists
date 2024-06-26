@@ -11,13 +11,17 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
       # Step 1: Start your application locally
-      - name: Start Application
-        run: npm start &
-      - name: Start App
-        run: sleep 30s
+      #- name: Start Application
+      #  run: npm start &
+      #- name: Start App
+      #  run: sleep 30s
 
   test:
     runs-on: ubuntu-latest
