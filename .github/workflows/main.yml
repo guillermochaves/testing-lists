@@ -16,6 +16,9 @@ jobs:
       - name: Install Dependencies
         run: npm install  # adjust if using yarn or other package managers
 
+      - name: Start App
+        run: npm start  
+
       - name: Run Playwright Tests from External Repository
         run: |
           git clone https://github.com/guillermochaves/pw-testing-lists.git
