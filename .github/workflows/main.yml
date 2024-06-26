@@ -20,5 +20,6 @@ jobs:
         run: |
           git clone https://github.com/guillermochaves/pw-testing-lists.git
           cd pw-testing-lists
-          npm install  # or yarn install
-          npm run test-chromium  # adjust the command if your tests are run differently
+          npm install
+          npm run test-chromium  
+        
