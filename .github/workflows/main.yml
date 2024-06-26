@@ -1,9 +1,9 @@
-name: Run Playwright Tests on Pull Request
+name: Run Playwright Tests from External Repository
 
 on:
   push:
     branches:
-      - master  # adjust the branch name as needed
+      - master  # adjust to your main branch name if different
 
 jobs:
   test:
@@ -11,12 +11,14 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.7
 
-      # Clone the external repository where Playwright tests reside
-      - name: Clone External Repository
-        run: git clone https://github.com/guillermochaves/pw-testing-lists
+      - name: Install Dependencies
+        run: npm install  # adjust if using yarn or other package managers
 
-      - name: Run Playwright tests
-        uses: microsoft/playwright-github-action@v1.5.5
-          
+      - name: Run Playwright Tests from External Repository
+        run: |
+          git clone https://github.com/guillermochaves/pw-testing-lists.git
+          cd pw-testing-lists
+          npm install  # or yarn install
+          npm run test-chromium  # adjust the command if your tests are run differently
