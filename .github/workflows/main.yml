@@ -1,0 +1,22 @@
+name: Run Playwright Tests on Pull Request
+
+on:
+  push:
+    branches:
+      - master  # adjust the branch name as needed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Clone the external repository where Playwright tests reside
+      - name: Clone External Repository
+        run: git clone https://github.com/guillermochaves/pw-testing-lists
+
+      - name: Run Playwright tests
+        uses: microsoft/playwright-github-action@v1.5.5
+          
