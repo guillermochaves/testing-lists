@@ -1,0 +1,40 @@
+name: Run App and E2E Tests from External Repository
+
+on:
+  push:
+    branches:
+      - master  # adjust to your main branch name if different
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.7
+
+      # Step 1: Start your application locally
+      - name: Start Application
+        run: npm start &
+      - name: Start App
+        run: sleep 30s
+
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clone External Repository
+        run: git clone https://github.com/guillermochaves/pw-testing-lists.git
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.7
+
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+
+        
