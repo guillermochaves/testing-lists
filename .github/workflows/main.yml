@@ -20,6 +20,9 @@ jobs:
         run: |
           git clone https://github.com/guillermochaves/pw-testing-lists.git
           cd pw-testing-lists
-          npm install
+          # Install NPM packages
+          npm ci
+          # Install Playwright browsers and dependencies
+          npx playwright install --with-deps
           npm run test-chromium  
         
